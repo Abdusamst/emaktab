@@ -4,6 +4,7 @@
     <title>Главная - Учитель</title>
 </head>
 <body>
+    {% include 'navbar.html' %}
     <h1>Добро пожаловать, {{ user.username }}! Вы — учитель.</h1>
     <p>Вы можете ставить оценки ученикам.</p>
     <a href="{% url 'add_grade' %}">Добавить оценку</a>

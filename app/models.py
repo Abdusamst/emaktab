@@ -13,7 +13,6 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     grade = models.CharField(max_length=10)
 
-    # Указываем related_name для обратной связи с Grade
     def __str__(self):
         return self.user.username
 

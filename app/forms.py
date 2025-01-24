@@ -6,6 +6,7 @@ class GradeForm(forms.ModelForm):
         model = Grade
         fields = ['student', 'subject', 'grade', 'comments']  # Укажите нужные поля
 
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User

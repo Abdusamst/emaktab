@@ -18,16 +18,14 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
             role = form.cleaned_data['role']
             if role == 'teacher':
                 user.is_teacher = True
             elif role == 'student':
                 user.is_student = True
             user.save()
-
             login(request, user)
-
             return redirect('home') 
     else:
         form = RegistrationForm()
@@ -50,3 +48,28 @@ from django.contrib.auth.views import LoginView
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'  
+
+
+
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+
+def custom_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            return render(request, 'login.html', {'error': 'Invalid username or password'})
+    else:
+        return render(request, 'login.html')
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
