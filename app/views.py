@@ -1,14 +1,19 @@
 from django.shortcuts import render, redirect
 from .forms import GradeForm
+from .models import Grade
+
 def add_grade(request):
     if request.method == 'POST':
         form = GradeForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('grades_list')  
+            grade = form.save(commit=False)
+            grade.teacher = request.user.teacher
+            grade.save()
+            return redirect('home')
     else:
         form = GradeForm()
     return render(request, 'add_grade.html', {'form': form})
+
 
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
@@ -73,3 +78,11 @@ from django.shortcuts import redirect
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+
+from django.shortcuts import render
+from .models import Student
+
+def student_list(request):
+    students = Student.objects.all()
+    return render(request, 'student_list.html', {'students': students})

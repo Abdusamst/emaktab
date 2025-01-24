@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить оценку</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label, input, textarea, select {
+            margin-bottom: 10px;
+        }
+
+        button {
+            align-self: center;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .student-list {
+            margin-top: 20px;
+        }
+
+        .student-list h2 {
+            text-align: center;
+        }
+
+        .student-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .student-list ul li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Добавить оценку</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Добавить оценку</button>
+        </form>
+        <div class="student-list">
+            <h2>Список учеников</h2>
+            <ul>
+                {% for student in students %}
+                <li>{{ student.user.username }} (Grade: {{ student.grade }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
