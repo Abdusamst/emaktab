@@ -86,6 +86,13 @@ DATABASES = {
 }
 
 
+# settings.py
+AUTH_USER_MODEL = 'app.User'  # Замените 'yourapp' на имя вашего приложения, где находится модель пользователя
+
+LOGIN_REDIRECT_URL = '/home/'
+LOGOUT_REDIRECT_URL = '/login/'
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
