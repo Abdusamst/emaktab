@@ -2,11 +2,75 @@
 <html>
 <head>
     <title>Главная - Учитель</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 14px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        nav ul li a:hover {
+            background-color: #111;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #fff;
+            text-decoration: none;
+            background-color: #007BFF;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     {% include 'navbar.html' %}
-    <h1>Добро пожаловать, {{ user.username }}! Вы — учитель.</h1>
-    <p>Вы можете ставить оценки ученикам.</p>
-    <a href="{% url 'add_grade' %}">Добавить оценку</a>
+    <div class="container">
+        <h1>Добро пожаловать, {{ user.username }}! Вы — учитель.</h1>
+        <p>Вы можете ставить оценки ученикам.</p>
+        <a href="{% url 'add_grade' %}" class="button">Добавить оценку</a>
+    </div>
 </body>
 </html>

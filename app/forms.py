@@ -1,10 +1,15 @@
 from django import forms
-from .models import Grade
+from .models import Grade, Student
 
 class GradeForm(forms.ModelForm):
+    student = forms.ModelChoiceField(queryset=Student.objects.all(), label="Ученик")
+    grade = forms.IntegerField(label="Оценка")
+    comments = forms.CharField(widget=forms.Textarea, label="Комментарии")
+
     class Meta:
         model = Grade
-        fields = ['student', 'subject', 'grade', 'comments']  # Укажите нужные поля
+        fields = ['student', 'subject', 'grade', 'comments']
+
 
 
 from django import forms
